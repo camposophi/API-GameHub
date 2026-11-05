@@ -16,10 +16,11 @@ export function criar(dados, callback){
 };
 
 export function atualizar(id, dados, callback){
+    console.log(dados);
     const sql = "UPDATE jogos SET titulo = ?, ano_lancamento = ?, estudio_id = ? WHERE id = ?";
-    conexao.query(sql, [dados.nome, dados.pais, id], callback);
+    conexao.query(sql, [dados.titulo, dados.ano_lancamento, dados.estudio_id, id], callback);
 };
 
-export function deletar(id, callback){
+export function excluir(id, callback){
     const sql = "DELETE FROM jogos WHERE id = ?";
     conexao.query(sql, [id], callback)};

@@ -1,0 +1,22 @@
+info:
+  name: POST-estudios
+  type: http
+
+http:
+  method: POST
+  url: http://localhost:3000/estudios
+  body:
+    type: json
+    data: |-
+      {
+        "id": 1,
+        "nome":"Sophia",
+        "pais":"Brasil"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

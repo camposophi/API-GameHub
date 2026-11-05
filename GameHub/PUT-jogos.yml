@@ -1,0 +1,23 @@
+info:
+  name: PUT-jogos
+  type: http
+
+http:
+  method: PUT
+  url: http://localhost:3000/jogos/4
+  body:
+    type: json
+    data: |-
+      {
+        "id": 2,
+        "titulo":"SubwaySurfs",
+        "ano_lancamento":2011,
+        "estudio_id": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

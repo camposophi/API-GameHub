@@ -37,11 +37,11 @@ export function criar(req, res, next) {
 
 export function atualizar(req, res, next) {
     const {titulo, ano_lancamento, estudio_id } = req.body ?? {};
-    if (!textoValido(titulo, 50) || !textoValido(ano_lancamento, 60) || !textoValido(estudio_id, 10)) {
+    if (!textoValido(titulo, 50) || !inteiroPositivo(ano_lancamento, 60) || !inteiroPositivo(estudio_id, 10)) {
         return res.status(400).json({ erro: "Informe título (até 50 caracteres), ano_lançamento (até 60 caracteres) e estúdio_id (até 10 caracteres)" });
     }
-    const dados = { titulo: titulo.trim(), ano_lancamento: ano_lancamento.trim(), estudio_id: estudio_id.trim() };
-
+    const dados = { titulo: titulo.trim(), ano_lancamento: ano_lancamento, estudio_id: estudio_id};
+    console.log(dados)
     // Consulta didática para confirmar que o registro existe antes de editar.
     jogoModel.buscarPorId(req.id, (erro, registros) => {
         if (erro) return next(erro);
@@ -49,6 +49,7 @@ export function atualizar(req, res, next) {
             return res.status(404).json({ erro: "Jogo não encontrado" });
         }
         jogoModel.atualizar(req.id, dados, (erro, resultado) => {
+            console.log(erro);
             if (erro) return next(erro);
             return res.status(200).json({ mensagem: "Jogo atualizado com sucesso" });
         });
